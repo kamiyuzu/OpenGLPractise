@@ -1,0 +1,72 @@
+Para incluir los ficheros para este ejercicio se puede proceder de varias maneras:
+
+1)Si vuestro entorno de programación os los permite, podéis añadirlos 
+directamente, por ejemplo el visual studio permite esta opción.
+
+2)Si no es el caso, podeis volver a regenerar el proyecto, para eso sigue las siguinetes intrucciones:
+
+Almacena los ficheros para el laboratorio 2 (GPO_02.cpp, GPO_02_entrega_ejer_1.cpp, GPO_02_entrega_ejer_2.cpp etc.) 
+en el directorio src del proyecto de la asignatura. 
+
+Luego, en el fichero CMake.txt que se encuentra en la raiz del proyecto, cambia las siguientes intrucciones:
+------------------------------------------------------------------------------------------------------------
+
+set(GPO_SOURCE_FILES include/stb/stb_image.h
+					 include/GpO.h
+					 src/GPO_02_entrega.cpp
+					 src/GPO_aux.cpp)
+add_executable(gpo_02_entrega ${GPO_SOURCE_FILES})
+target_link_libraries(gpo_02_entrega PRIVATE ${OPENGL_LIBRARIES} glfw glm glad_interface)
+
+por estas otras:
+------------------------------------------------------------------------
+set(GPO_SOURCE_FILES include/stb/stb_image.h
+					 include/GpO.h
+					 src/GPO_02_entrega_ejer_1.cpp
+					 src/GPO_aux.cpp)
+add_executable(gpo_02_entrega_ejer_1 ${GPO_SOURCE_FILES})
+target_link_libraries(gpo_02_entrega_ejer_1 PRIVATE ${OPENGL_LIBRARIES} glfw glm glad_interface)
+
+set(GPO_SOURCE_FILES include/stb/stb_image.h
+		include/GpO.h
+		src/GPO_02_entrega_ejer_2.cpp
+		src/GPO_aux.cpp)
+add_executable(gpo_02_entrega_ejer_2 ${GPO_SOURCE_FILES})
+target_link_libraries(gpo_02_entrega_ejer_2 PRIVATE ${OPENGL_LIBRARIES} glfw glm glad_interface)
+
+set(GPO_SOURCE_FILES include/stb/stb_image.h
+		include/GpO.h
+		src/GPO_02_entrega_ejer_3.cpp
+		src/GPO_aux.cpp)
+add_executable(gpo_02_entrega_ejer_3 ${GPO_SOURCE_FILES})
+target_link_libraries(gpo_02_entrega_ejer_3 PRIVATE ${OPENGL_LIBRARIES} glfw glm glad_interface)
+
+set(GPO_SOURCE_FILES include/stb/stb_image.h
+		include/GpO.h
+		src/GPO_02_entrega_ejer_4.cpp
+		src/GPO_aux.cpp)
+add_executable(gpo_02_entrega_ejer_4 ${GPO_SOURCE_FILES})
+target_link_libraries(gpo_02_entrega_ejer_4 PRIVATE ${OPENGL_LIBRARIES} glfw glm glad_interface)
+
+Cambia también esta:
+------------------------------------------------------------------------
+set_target_properties(gpo_02_entrega
+  PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin")
+
+
+por estas otras:
+------------------------------------------------------------------------
+set_target_properties(gpo_02_entrega_ejer_1
+		PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin")
+set_target_properties(gpo_02_entrega_ejer_2
+		PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin")
+set_target_properties(gpo_02_entrega_ejer_3
+		PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin")
+set_target_properties(gpo_02_entrega_ejer_4
+		PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin")
+
+
+Una vez modificado el fichero cmake con estas notas, es necesario volver 
+a regenerar el proyecto, para eso solo tienes que volver a seguir las 
+intrucciones del readme.md del propio poryecto.
+------------------------------------------------------------------------
