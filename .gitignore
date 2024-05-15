@@ -1,4 +1,11 @@
-build
+build/*
+!build/libs
+!build/cmake_install.cmake
+!build/CMakeCache.txt
+!build/Makefile
 .DS_Store
 .vscode/
-data/
+data/*
+!data/melinoe_weapons.obj
+!data/credits_melinoe.md
+!data/luna.jpg

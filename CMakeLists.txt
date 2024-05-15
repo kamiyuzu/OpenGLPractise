@@ -34,22 +34,15 @@ include_directories(${PROJECT_SOURCE_DIR}/include/stb)
 
 set(GPO_SOURCE_FILES include/stb/stb_image.h
 					 include/GpO.h
+					 include/GpOObjectLoader.hpp
+					 include/GpOObjectLoader.cpp
 					 src/GPO_04_entrega_ejer2.cpp
 					 src/GPO_aux.cpp)
 add_executable(gpo_04_entrega_ejer2 ${GPO_SOURCE_FILES})
 target_link_libraries(gpo_04_entrega_ejer2 PRIVATE ${OPENGL_LIBRARIES} glfw glm glad_interface)
 
-set(GPO_SOURCE_FILES include/stb/stb_image.h
-					 include/GpO.h
-					 src/GPO_04_entrega_ejer3.cpp
-					 src/GPO_aux.cpp)
-add_executable(gpo_04_entrega_ejer3 ${GPO_SOURCE_FILES})
-target_link_libraries(gpo_04_entrega_ejer3 PRIVATE ${OPENGL_LIBRARIES} glfw glm glad_interface)
-
 set_target_properties(gpo_04_entrega_ejer2
-  PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin")  
-set_target_properties(gpo_04_entrega_ejer3
-  PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin")     
+  PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin")
 
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 file(COPY data DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/bin)
