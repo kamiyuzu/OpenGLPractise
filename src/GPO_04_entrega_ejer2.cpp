@@ -107,12 +107,12 @@ void dibujar_indexado(objeto obj)
 
 
 // Variables globales
+float az=0.0f, el=0.75f, d = 2.0f, zfar = 25.0f, znear = 0.2f;
 mat4 Proy,View,M, R, T, S;
-vec3 campos=vec3(0.0f,0.0f,2.0f);											
+vec3 campos=vec3(0.0f,0.0f,d);											
 vec3 target=vec3(0.0f,0.0f,0.0f);
-vec3 up = vec3(0, 1, 0);
+vec3 up = vec3(0.0f, 1.0f, 0.0f);
 int prog_selected = 0;
-float az=0, el=0.75;
 
 // Compilaci�n programas a ejecutar en la tarjeta gr�fica:  vertex shader, fragment shaders
 // Preparaci�n de los datos de los objetos a dibujar, envialarlos a la GPU
@@ -125,10 +125,7 @@ void init_scene()
 	glUseProgram(prog[prog_selected]);
 
 	modelo = cargar_modelo((char*) "bin/data/melinoe_weapons.obj");
-	GLuint tex0 = cargar_textura("bin/data/luna.jpg", GL_TEXTURE0);
-
-	Proy = glm::perspective(glm::radians(55.0f), 4.0f / 3.0f, 0.1f, 100.0f); 
-	View = glm::lookAt(campos,target,up);
+	GLuint tex0 = cargar_textura("bin/data/melinoe.jpg", GL_TEXTURE0);
 
 	glEnable(GL_CULL_FACE); glEnable(GL_DEPTH_TEST);
 }
@@ -143,6 +140,10 @@ void render_scene()
 	float tt = (float)glfwGetTime();  // Contador de tiempo en segundos 
 	
 	glUseProgram(prog[prog_selected]);
+	campos = d * vec3(sin(az)*cos(el), cos(az)*cos(el), sin(el));
+
+	Proy = perspective(radians(55.0f), 4.0f / 3.0f, znear, zfar); 
+	View = lookAt(campos,target,up);
 
 	vec3 light_dir = vec3(cos(el)*cos(az), sin(el), cos(el)*sin(az));
 	vec3 xy=vec3(cos(tt), 1.0f, sin(tt));
@@ -221,12 +222,6 @@ static void KeyCallback(GLFWwindow* window, int key, int code, int action, int m
 	switch (key)
 	{
 		case GLFW_KEY_ESCAPE: glfwSetWindowShouldClose(window, true); break;
-		case GLFW_KEY_TAB:
-			if(action) {
-				if(prog_selected) prog_selected=0;
-				else prog_selected=1;
-			}
-			break;
 		case GLFW_KEY_UP: if(action && el<=M_PI/2) el+=0.02f; break;
 		case GLFW_KEY_DOWN: if(action && el>=-M_PI/2) el-=0.02f; break;
 		case GLFW_KEY_LEFT: if(action) az+=0.02f; break;
@@ -234,11 +229,62 @@ static void KeyCallback(GLFWwindow* window, int key, int code, int action, int m
 	}
 }
 
+double xp, yp;
 
-void asigna_funciones_callback(GLFWwindow* window)
-{
-	glfwSetWindowSizeCallback(window, ResizeCallback);
-	glfwSetKeyCallback(window, KeyCallback);
+static void moverCallback(GLFWwindow* window, double x, double y) {
+    // Los parámetros x, y nos dan la posición actual del cursor en la ventana.
+    fprintf(stdout,"x %.1f y %.1f\n", x, y);
+    double F = 0.007f * d;
+    double dx = x - xp;
+    double dy = y - yp;
+    az = F * dx;
+    el = F * dy;
+}
+
+GLfloat zp;
+
+void pulsarCallback(GLFWwindow* window, int Button, int Action, int Mode) {
+    // El parámetro Button nos da el botón pulsado (0=izquierdo, 1= derecho). 
+    // Action nos indica si se ha pulsado (1) o liberado (0). 
+    // Mode si se ha pulsado en combinación con alguna otra tecla (Shift, Ctrl, …).
+	fprintf(stdout, "Button %d Act %d Mode %d\n", Button, Action, Mode);
+    if (!Button && Action) {
+        glfwGetCursorPos(window,&xp,&yp);
+        glfwSetCursorPosCallback(window, moverCallback);
+    }
+
+    if (!Button && !Action) glfwSetCursorPosCallback(window, NULL);
+
+    if (Button && Action) {
+        glfwGetCursorPos(window,&xp,&yp);
+        glReadPixels((GLint) xp, (GLint) yp, 1, 1, GL_DEPTH_COMPONENT, GL_FLOAT, &zp);
+        fprintf(stdout, "xp= %.0f yp= %.0f zp= %.3f\n", xp, yp, zp);
+        float xn=(2*(xp/ANCHO))-1;
+        float yn=(2*(yp/ALTO))-1;
+        float zn=2*zp-1;
+        fprintf(stdout, "xn= %.0f yn= %.0f zn= %.3f\n", xn, yn, zn);
+        float z_cam = (-2*znear*zfar)/((zfar+znear)+zn*(znear-zfar));
+        float x_cam = -((xn*z_cam)/Proy[0][0]); 
+        float y_cam = -((yn*z_cam)/Proy[1][1]);
+        fprintf(stdout, "xcam= %.0f ycam= %.0f zcam= %.3f\n", x_cam, y_cam, z_cam);
+    }
+}
+
+static void scrollCallback(GLFWwindow* window, double dx, double dy) {
+    // Los parámetros dx,dy nos dan el "scrolling" en los ejes X e Y. 
+    // En el caso de usar la rueda del ratón dx=0 y solo tenemos "scrolling" vertical.
+    fprintf(stdout,"x %.1f y %.1f\n", dx, dy);
+    if (dy > 0.0f) d+=0.25f;
+    if (dy < 0.0f) d-=0.25f;
+    fprintf(stdout,"x %.1f y %.1f z %.1f\n", campos.x, campos.y, campos.z);
+    fprintf(stdout,"d %.1f\n", d);
+}
+
+void asigna_funciones_callback(GLFWwindow *window) {
+    glfwSetWindowSizeCallback(window, ResizeCallback);
+    glfwSetKeyCallback(window, KeyCallback);
+    glfwSetMouseButtonCallback(window, pulsarCallback);
+    glfwSetScrollCallback(window, scrollCallback);
 }
 
 
