@@ -1,7 +1,8 @@
 
 
 //####include <GpO.h>
-#include "GpO.h"
+#include <GpO.h>
+#include <GpOObjectLoader.hpp>
 
 #define STB_IMAGE_IMPLEMENTATION
 //####include <stb\stb_image.h>
@@ -286,125 +287,70 @@ GLuint cargar_cube_map(const char * imagepath, GLuint tex_unit)
 	return textureID;
 }
 
-
 objeto cargar_modelo(char* fichero)
 {
 	objeto obj;
 	GLuint VAO;
-	GLuint buffer,i_buffer;
-	
-	
 
-	GLuint N_vertices, N_caras, N_indices; 
+	// Read our .obj file
+	std::vector<glm::vec3> vertices;
+	std::vector<glm::vec2> uvs;
+	std::vector<glm::vec3> normals; // Won't be used at the moment.
+	bool res = loadOBJ(fichero, vertices, uvs, normals);
 
-	unsigned char *vertex_data; 
-	unsigned char *indices; 
-
-
-	 FILE* fid;
-     fopen_s(&fid,fichero,"rb");
-
-	 if (fid==NULL) { 
+	if (res==false) { 
 		 printf("Error al leer datos. Existe el fichero %s?\n",fichero); 
-		 obj.VAO=0; obj.Ni=0; obj.tipo_indice=0;
 		 glfwTerminate();
 	     return obj;
-	 }
-
-	 fread((void*)&N_caras,4,1,fid);    
-	 fread((void*)&N_indices,4,1,fid); 
-	 //N_indices=3*N_caras; 
-	 fread((void*)&N_vertices,4,1,fid); 
-
-	 fseek(fid,0,SEEK_END);
-	 unsigned int s_fichero=ftell(fid);
-
-
-	 GLuint tipo = GL_UNSIGNED_INT; unsigned char s_index = 4;
-	 if (N_vertices <= 65536) { tipo = GL_UNSIGNED_SHORT; s_index = 2; }
-	 if (N_vertices <= 256)   { tipo = GL_UNSIGNED_BYTE; s_index = 1; }
-
-	 fseek(fid,12,SEEK_SET);
-
-
-	 GLuint bytes_indices=N_indices*s_index;
-	 GLuint bytes_data = s_fichero-12-bytes_indices;
-	 GLuint datos_per_vertex=((bytes_data/4)/N_vertices);
-
-	 printf("Leyendo modelo de %s: (%d bytes)\n",fichero,s_fichero);
-	  printf("%d vertices, %d triangulos. Lista de %d indices\n",N_vertices,N_caras,N_indices);
-	// printf("%d vertices, %d triangulos\n",N_vertices,N_caras);
-	 printf("Indices guardados en enteros de %d bytes\n",s_index);
-	 printf("%d datos por vertice\n",datos_per_vertex);
-
-	 obj.Ni=N_indices;
-	 obj.Nv=N_vertices;
-	 obj.Nt=N_caras;
-	 obj.tipo_indice=tipo; 
-
-	 vertex_data=(unsigned char*)malloc(N_vertices*datos_per_vertex*4); 
-	 if (vertex_data==NULL) printf("ptr NULL\n"); 
-	 indices=(unsigned char*)malloc(N_indices*s_index); 
-	 if (indices ==NULL) printf("ptrindices NULL\n"); 
-
-     fread((void*)vertex_data,4,datos_per_vertex*N_vertices,fid);
-     fread((void*)indices,s_index,N_indices,fid);
-
-	 fclose(fid);
-
+	}
 
     glGenVertexArrays(1, &VAO);
 	glBindVertexArray(VAO);
 
-	glGenBuffers(1, &buffer);
-	glBindBuffer(GL_ARRAY_BUFFER, buffer);
-	glBufferData(GL_ARRAY_BUFFER, N_vertices*datos_per_vertex*4, vertex_data, GL_STATIC_DRAW);
+	// Load it into a VBO
 
-	// Defino 1er argumento (atributo 0) del vertex shader (siempre XYZ)
-	glEnableVertexAttribArray(0); 
-	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, datos_per_vertex*sizeof(float), 0);
+	GLuint vertexbuffer;
+	glGenBuffers(1, &vertexbuffer);
+	glBindBuffer(GL_ARRAY_BUFFER, vertexbuffer);
+	glBufferData(GL_ARRAY_BUFFER, vertices.size() * sizeof(glm::vec3), &vertices[0], GL_STATIC_DRAW);
 
-	switch (datos_per_vertex)
-	{
-	case 3:   break;
-	case 5:   // 2º atributo = UV
-       	glEnableVertexAttribArray(1);
-	    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, datos_per_vertex*sizeof(float), (void*)(3*sizeof(float)));
-		break;
-	case 6:   // 2º atributo = (nx,ny,nz)
-       	glEnableVertexAttribArray(1);
-	    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, datos_per_vertex*sizeof(float), (void*)(3*sizeof(float)));
-		break;
-	case 8:   // 2º atributo = UV, 3º atributo = (nx,ny,nz)
-       	glEnableVertexAttribArray(1);
-	    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, datos_per_vertex*sizeof(float), (void*)(3*sizeof(float)));
-        glEnableVertexAttribArray(2);
-	    glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, datos_per_vertex*sizeof(float), (void*)(5*sizeof(float)));
-		break;
-	}
+	// 1rst attribute buffer : vertices
+	glEnableVertexAttribArray(0);
+	glBindBuffer(GL_ARRAY_BUFFER, vertexbuffer);
+	glVertexAttribPointer(
+		0,                  // attribute
+		3,                  // size
+		GL_FLOAT,           // type
+		GL_FALSE,           // normalized?
+		0,                  // stride
+		(void*)0            // array buffer offset
+	);
 
-	glBindBuffer(GL_ARRAY_BUFFER, 0);  // Asignados atributos, podemos desconectar BUFFER
+	GLuint uvbuffer;
+	glGenBuffers(1, &uvbuffer);
+	glBindBuffer(GL_ARRAY_BUFFER, uvbuffer);
+	glBufferData(GL_ARRAY_BUFFER, uvs.size() * sizeof(glm::vec2), &uvs[0], GL_STATIC_DRAW);
 
-	glGenBuffers(1, &i_buffer);
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, i_buffer);
-	glBufferData(GL_ELEMENT_ARRAY_BUFFER, N_indices*s_index,indices, GL_STATIC_DRAW);
-	
-		
+	// 2nd attribute buffer : UVs
+	glEnableVertexAttribArray(1);
+	glBindBuffer(GL_ARRAY_BUFFER, uvbuffer);
+	glVertexAttribPointer(
+		1,                                // attribute
+		2,                                // size
+		GL_FLOAT,                         // type
+		GL_FALSE,                         // normalized?
+		0,                                // stride
+		(void*)0                          // array buffer offset
+	);
+
 	glBindVertexArray(0);  //Cerramos Vertex Array con todo lidto para ser pintado
-
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 
+	glDisableVertexAttribArray(0);
+	glDisableVertexAttribArray(1);
+
+	obj.vertices=vertices;
 	obj.VAO=VAO; 
-	
-
-	//GLuint k;
-	//for (k=0;k<12;k++) printf("%.1f ",vertex_data[k]);
-	//for (k=0;k<12;k++) printf("%1d ",indices[k]);
-
-	// Una vez transferido datos liberamos memoria en CPU
-	free((void*)vertex_data);
-	free((void*)indices);
-
 
 	return obj;
 

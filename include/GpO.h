@@ -35,9 +35,10 @@
 
 using namespace glm;
 
+#include <vector>
 
 // DEclaraciones  de tipos
-typedef struct {GLuint VAO; GLuint Ni; GLuint Nv; GLuint Nt; GLuint tipo_indice; } objeto;
+typedef struct {GLuint VAO; std::vector<vec3> vertices; } objeto;
 
 
 /// DECLARACIONES DE FUNCIONES AUXILIARES
