@@ -287,7 +287,7 @@ GLuint cargar_cube_map(const char * imagepath, GLuint tex_unit)
 	return textureID;
 }
 
-objeto cargar_modelo(char* fichero)
+objeto cargar_obj(char* fichero)
 {
 	objeto obj;
 	GLuint VAO;
@@ -343,11 +343,29 @@ objeto cargar_modelo(char* fichero)
 		(void*)0                          // array buffer offset
 	);
 
+	GLuint normalsbuffer;
+	glGenBuffers(1, &normalsbuffer);
+	glBindBuffer(GL_ARRAY_BUFFER, normalsbuffer);
+	glBufferData(GL_ARRAY_BUFFER, normals.size() * sizeof(glm::vec3), &normals[0], GL_STATIC_DRAW);
+
+	// 3rd attribute buffer : normals
+	glEnableVertexAttribArray(2);
+	glBindBuffer(GL_ARRAY_BUFFER, normalsbuffer);
+	glVertexAttribPointer(
+		2,                  // attribute
+		3,                  // size
+		GL_FLOAT,           // type
+		GL_FALSE,           // normalized?
+		0,                  // stride
+		(void*)0            // array buffer offset
+	);
+
 	glBindVertexArray(0);  //Cerramos Vertex Array con todo lidto para ser pintado
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 
 	glDisableVertexAttribArray(0);
 	glDisableVertexAttribArray(1);
+	glDisableVertexAttribArray(2);
 
 	obj.vertices=vertices;
 	obj.VAO=VAO; 

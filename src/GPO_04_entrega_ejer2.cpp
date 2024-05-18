@@ -22,16 +22,23 @@ const char* prac = "OpenGL(GpO) Iluminacion";   // Nombre de la practica (aparec
 const char* vertex_prog1 = GLSL(
 layout(location = 0) in vec3 pos;
 layout(location = 1) in vec2 uv;
+layout(location = 2) in vec3 normals;
 out vec2 UV;
+out vec3 POS;
+out vec3 NORMALS;
 uniform mat4 MVP;
 void main(){
-	gl_Position = MVP*vec4(pos, 1);
+	gl_Position = MVP*vec4(pos.x*0.25, pos.y*0.25, pos.z*0.25, 1.0);;
 	UV = uv;
+	POS = pos;
+	NORMALS = normals;
 }
 );
 
 const char* fragment_prog1 = GLSL(
+in vec3 POS;
 in vec2 UV;
+in vec3 NORMALS;
 out vec3 col;
 uniform sampler2D unit;
 void main()
@@ -124,7 +131,7 @@ void init_scene()
 	
 	glUseProgram(prog[prog_selected]);
 
-	modelo = cargar_modelo((char*) "bin/data/melinoe_weapons.obj");
+	modelo = cargar_obj((char*) "bin/data/melinoeweapons.obj");
 	GLuint tex0 = cargar_textura("bin/data/melinoe.jpg", GL_TEXTURE0);
 
 	glEnable(GL_CULL_FACE); glEnable(GL_DEPTH_TEST);
@@ -274,8 +281,8 @@ static void scrollCallback(GLFWwindow* window, double dx, double dy) {
     // Los parámetros dx,dy nos dan el "scrolling" en los ejes X e Y. 
     // En el caso de usar la rueda del ratón dx=0 y solo tenemos "scrolling" vertical.
     fprintf(stdout,"x %.1f y %.1f\n", dx, dy);
-    if (dy > 0.0f) d+=0.25f;
-    if (dy < 0.0f) d-=0.25f;
+    if (dy > 0.0f) d+=0.1f;
+    if (dy < 0.0f) d-=0.1f;
     fprintf(stdout,"x %.1f y %.1f z %.1f\n", campos.x, campos.y, campos.z);
     fprintf(stdout,"d %.1f\n", d);
 }

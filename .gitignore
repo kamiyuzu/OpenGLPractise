@@ -8,5 +8,4 @@ build/*
 data/*
 !data/melinoe_weapons.obj
 !data/credits_melinoe.md
-!data/luna.jpg
 !data/melinoe.jpg
