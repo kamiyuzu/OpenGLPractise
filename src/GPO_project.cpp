@@ -22,28 +22,76 @@ const char* prac = "OpenGL(GpO) Iluminacion";   // Nombre de la practica (aparec
 const char* vertex_prog1 = GLSL(
 layout(location = 0) in vec3 pos;
 layout(location = 1) in vec2 uv;
-layout(location = 2) in vec3 normals;
+layout(location = 2) in vec3 normal;
 out vec2 UV;
 out vec3 POS;
-out vec3 NORMALS;
+out vec3 NORMAL;
+out vec3 COLOR;
 uniform mat4 MVP;
+uniform mat4 View;
 void main(){
-	gl_Position = MVP*vec4(pos.x*0.25, pos.y*0.25, pos.z*0.25, 1.0);;
-	UV = uv;
-	POS = pos;
-	NORMALS = normals;
+	gl_Position = MVP*vec4(pos.x*0.25, pos.y*0.25, pos.z*0.25, 1.0);
+
+	vec4 temp= View*vec4(pos, 1.0f); 
+	POS= vec3(temp.x, temp.y, temp.z);
+    
+	temp= transpose(inverse(View))*vec4(normal, 1.0f);
+	NORMAL= vec3(temp.x, temp.y, temp.z);
+   
+    COLOR = vec3(0.5,0.5,0.5);
+	UV=uv;
 }
 );
 
 const char* fragment_prog1 = GLSL(
-in vec3 POS;
-in vec2 UV;
-in vec3 NORMALS;
-out vec3 col;
+uniform vec3 luz;
+uniform vec3 color_luz;
+uniform vec3 campos;
+
 uniform sampler2D unit;
-void main()
-{
-	col= texture(unit, UV).rgb;
+
+in vec3 COLOR;
+in vec3 POS;
+in vec3 NORMAL;
+in vec2 UV;
+out vec4 col;
+
+void main(void) {
+	vec3 lightDir= normalize(luz-POS);  
+	vec3 viewDir= normalize(campos-POS);
+	
+	//ambient lighting
+	float Kamb= 1.0;
+	vec3 ambient= Kamb*color_luz;
+	
+	//diffused lighting
+	float Kdiff= 1.0; 
+	vec3 norm= normalize(NORMAL);
+	float diff= max(dot(norm, lightDir), 0.0); 	//to clamp between 0 and 1
+	vec3 diffuse= Kdiff*diff*color_luz;  	//light intensity * cos
+	
+	//specular lighting
+	float Kspec = 1.0f;
+	vec3 reflectDir= reflect(-lightDir, norm);
+	float spec= pow(max(dot(viewDir, reflectDir), 0.0), 16);
+	vec3 specular= Kspec*spec*color_luz;
+	
+	float edge_thresh=0.0;
+	float visiblity=dot(viewDir, norm);
+
+	float edge_detection = (visiblity > edge_thresh) ? 0 : 1;
+	
+	vec3 tex_final= texture(unit, UV).rgb;
+	vec3 final_color;
+	if(edge_detection ==0){
+		final_color= (ambient+diffuse+specular)*COLOR;
+	}else{
+		float scale_origin=0.5;
+		float scale=scale_origin+edge_thresh;
+		float factor= (visiblity+scale_origin)/scale;
+		final_color= factor*ambient*COLOR;
+	}
+	col= vec4(final_color, 1.0f);
 }
 );
 
@@ -160,9 +208,11 @@ void render_scene()
 	M = R * S;
 	// M = rotate(90.0f, vec3(0.0f, 0.0f, 1.0f))*rotate(90.0f, vec3(0.0f, 1.0f, 0.0f));   // Mov modelo 
 	
-	transfer_mat4("MVP",Proy*View*M);
-	// transfer_vec3("luz", light_dir);
-	// transfer_vec3("campos", campos);
+	transfer_mat4("MVP", Proy*View*M);
+	transfer_mat4("View", View);
+	transfer_vec3("luz", light_dir);
+	transfer_vec3("color_luz", vec3(1.0f, 1.0f, 1.0f));
+	transfer_vec3("campos", campos);
 	dibujar_indexado(modelo);
 	
 }
