@@ -38,7 +38,8 @@ using namespace glm;
 #include <vector>
 
 // DEclaraciones  de tipos
-typedef struct {GLuint VAO; std::vector<vec3> vertices; } objeto;
+typedef struct {GLuint VAO; GLuint Ni; GLuint Nv; GLuint Nt; GLuint tipo_indice; } objeto;
+typedef struct {GLuint VAO; std::vector<vec3> vertices; } obj;
 
 
 /// DECLARACIONES DE FUNCIONES AUXILIARES
@@ -57,7 +58,8 @@ char* leer_codigo_de_fichero(const char*);
 
 GLuint cargar_cube_map(const char *, GLuint);
 GLuint cargar_textura(const char *,GLuint);
-objeto cargar_obj(char*);
+objeto cargar_modelo(char* fichero);
+obj cargar_obj(char* fichero);
 
 void transfer_mat4(const char*, mat4);
 void transfer_mat3(const char*, mat3);

@@ -162,17 +162,30 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named gpo_04_entrega_ejer2
+# Target rules for targets named gpo_project
 
 # Build rule for target.
-gpo_04_entrega_ejer2: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 gpo_04_entrega_ejer2
-.PHONY : gpo_04_entrega_ejer2
+gpo_project: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 gpo_project
+.PHONY : gpo_project
 
 # fast build rule for target.
-gpo_04_entrega_ejer2/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/gpo_04_entrega_ejer2.dir/build.make CMakeFiles/gpo_04_entrega_ejer2.dir/build
-.PHONY : gpo_04_entrega_ejer2/fast
+gpo_project/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/gpo_project.dir/build.make CMakeFiles/gpo_project.dir/build
+.PHONY : gpo_project/fast
+
+#=============================================================================
+# Target rules for targets named gpo_04_entrega_ejer3
+
+# Build rule for target.
+gpo_04_entrega_ejer3: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 gpo_04_entrega_ejer3
+.PHONY : gpo_04_entrega_ejer3
+
+# fast build rule for target.
+gpo_04_entrega_ejer3/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/gpo_04_entrega_ejer3.dir/build.make CMakeFiles/gpo_04_entrega_ejer3.dir/build
+.PHONY : gpo_04_entrega_ejer3/fast
 
 #=============================================================================
 # Target rules for targets named uninstall
@@ -205,7 +218,8 @@ include/GpOObjectLoader.o: include/GpOObjectLoader.cpp.o
 
 # target to build an object file
 include/GpOObjectLoader.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/gpo_04_entrega_ejer2.dir/build.make CMakeFiles/gpo_04_entrega_ejer2.dir/include/GpOObjectLoader.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/gpo_project.dir/build.make CMakeFiles/gpo_project.dir/include/GpOObjectLoader.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/gpo_04_entrega_ejer3.dir/build.make CMakeFiles/gpo_04_entrega_ejer3.dir/include/GpOObjectLoader.cpp.o
 .PHONY : include/GpOObjectLoader.cpp.o
 
 include/GpOObjectLoader.i: include/GpOObjectLoader.cpp.i
@@ -213,7 +227,8 @@ include/GpOObjectLoader.i: include/GpOObjectLoader.cpp.i
 
 # target to preprocess a source file
 include/GpOObjectLoader.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/gpo_04_entrega_ejer2.dir/build.make CMakeFiles/gpo_04_entrega_ejer2.dir/include/GpOObjectLoader.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/gpo_project.dir/build.make CMakeFiles/gpo_project.dir/include/GpOObjectLoader.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/gpo_04_entrega_ejer3.dir/build.make CMakeFiles/gpo_04_entrega_ejer3.dir/include/GpOObjectLoader.cpp.i
 .PHONY : include/GpOObjectLoader.cpp.i
 
 include/GpOObjectLoader.s: include/GpOObjectLoader.cpp.s
@@ -221,7 +236,8 @@ include/GpOObjectLoader.s: include/GpOObjectLoader.cpp.s
 
 # target to generate assembly for a file
 include/GpOObjectLoader.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/gpo_04_entrega_ejer2.dir/build.make CMakeFiles/gpo_04_entrega_ejer2.dir/include/GpOObjectLoader.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/gpo_project.dir/build.make CMakeFiles/gpo_project.dir/include/GpOObjectLoader.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/gpo_04_entrega_ejer3.dir/build.make CMakeFiles/gpo_04_entrega_ejer3.dir/include/GpOObjectLoader.cpp.s
 .PHONY : include/GpOObjectLoader.cpp.s
 
 libs/glad/src/glad.o: libs/glad/src/glad.c.o
@@ -229,7 +245,8 @@ libs/glad/src/glad.o: libs/glad/src/glad.c.o
 
 # target to build an object file
 libs/glad/src/glad.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/gpo_04_entrega_ejer2.dir/build.make CMakeFiles/gpo_04_entrega_ejer2.dir/libs/glad/src/glad.c.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/gpo_project.dir/build.make CMakeFiles/gpo_project.dir/libs/glad/src/glad.c.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/gpo_04_entrega_ejer3.dir/build.make CMakeFiles/gpo_04_entrega_ejer3.dir/libs/glad/src/glad.c.o
 .PHONY : libs/glad/src/glad.c.o
 
 libs/glad/src/glad.i: libs/glad/src/glad.c.i
@@ -237,7 +254,8 @@ libs/glad/src/glad.i: libs/glad/src/glad.c.i
 
 # target to preprocess a source file
 libs/glad/src/glad.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/gpo_04_entrega_ejer2.dir/build.make CMakeFiles/gpo_04_entrega_ejer2.dir/libs/glad/src/glad.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/gpo_project.dir/build.make CMakeFiles/gpo_project.dir/libs/glad/src/glad.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/gpo_04_entrega_ejer3.dir/build.make CMakeFiles/gpo_04_entrega_ejer3.dir/libs/glad/src/glad.c.i
 .PHONY : libs/glad/src/glad.c.i
 
 libs/glad/src/glad.s: libs/glad/src/glad.c.s
@@ -245,39 +263,41 @@ libs/glad/src/glad.s: libs/glad/src/glad.c.s
 
 # target to generate assembly for a file
 libs/glad/src/glad.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/gpo_04_entrega_ejer2.dir/build.make CMakeFiles/gpo_04_entrega_ejer2.dir/libs/glad/src/glad.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/gpo_project.dir/build.make CMakeFiles/gpo_project.dir/libs/glad/src/glad.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/gpo_04_entrega_ejer3.dir/build.make CMakeFiles/gpo_04_entrega_ejer3.dir/libs/glad/src/glad.c.s
 .PHONY : libs/glad/src/glad.c.s
 
-src/GPO_04_entrega_ejer2.o: src/GPO_04_entrega_ejer2.cpp.o
-.PHONY : src/GPO_04_entrega_ejer2.o
+src/GPO_04_entrega_ejer3.o: src/GPO_04_entrega_ejer3.cpp.o
+.PHONY : src/GPO_04_entrega_ejer3.o
 
 # target to build an object file
-src/GPO_04_entrega_ejer2.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/gpo_04_entrega_ejer2.dir/build.make CMakeFiles/gpo_04_entrega_ejer2.dir/src/GPO_04_entrega_ejer2.cpp.o
-.PHONY : src/GPO_04_entrega_ejer2.cpp.o
+src/GPO_04_entrega_ejer3.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/gpo_04_entrega_ejer3.dir/build.make CMakeFiles/gpo_04_entrega_ejer3.dir/src/GPO_04_entrega_ejer3.cpp.o
+.PHONY : src/GPO_04_entrega_ejer3.cpp.o
 
-src/GPO_04_entrega_ejer2.i: src/GPO_04_entrega_ejer2.cpp.i
-.PHONY : src/GPO_04_entrega_ejer2.i
+src/GPO_04_entrega_ejer3.i: src/GPO_04_entrega_ejer3.cpp.i
+.PHONY : src/GPO_04_entrega_ejer3.i
 
 # target to preprocess a source file
-src/GPO_04_entrega_ejer2.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/gpo_04_entrega_ejer2.dir/build.make CMakeFiles/gpo_04_entrega_ejer2.dir/src/GPO_04_entrega_ejer2.cpp.i
-.PHONY : src/GPO_04_entrega_ejer2.cpp.i
+src/GPO_04_entrega_ejer3.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/gpo_04_entrega_ejer3.dir/build.make CMakeFiles/gpo_04_entrega_ejer3.dir/src/GPO_04_entrega_ejer3.cpp.i
+.PHONY : src/GPO_04_entrega_ejer3.cpp.i
 
-src/GPO_04_entrega_ejer2.s: src/GPO_04_entrega_ejer2.cpp.s
-.PHONY : src/GPO_04_entrega_ejer2.s
+src/GPO_04_entrega_ejer3.s: src/GPO_04_entrega_ejer3.cpp.s
+.PHONY : src/GPO_04_entrega_ejer3.s
 
 # target to generate assembly for a file
-src/GPO_04_entrega_ejer2.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/gpo_04_entrega_ejer2.dir/build.make CMakeFiles/gpo_04_entrega_ejer2.dir/src/GPO_04_entrega_ejer2.cpp.s
-.PHONY : src/GPO_04_entrega_ejer2.cpp.s
+src/GPO_04_entrega_ejer3.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/gpo_04_entrega_ejer3.dir/build.make CMakeFiles/gpo_04_entrega_ejer3.dir/src/GPO_04_entrega_ejer3.cpp.s
+.PHONY : src/GPO_04_entrega_ejer3.cpp.s
 
 src/GPO_aux.o: src/GPO_aux.cpp.o
 .PHONY : src/GPO_aux.o
 
 # target to build an object file
 src/GPO_aux.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/gpo_04_entrega_ejer2.dir/build.make CMakeFiles/gpo_04_entrega_ejer2.dir/src/GPO_aux.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/gpo_project.dir/build.make CMakeFiles/gpo_project.dir/src/GPO_aux.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/gpo_04_entrega_ejer3.dir/build.make CMakeFiles/gpo_04_entrega_ejer3.dir/src/GPO_aux.cpp.o
 .PHONY : src/GPO_aux.cpp.o
 
 src/GPO_aux.i: src/GPO_aux.cpp.i
@@ -285,7 +305,8 @@ src/GPO_aux.i: src/GPO_aux.cpp.i
 
 # target to preprocess a source file
 src/GPO_aux.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/gpo_04_entrega_ejer2.dir/build.make CMakeFiles/gpo_04_entrega_ejer2.dir/src/GPO_aux.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/gpo_project.dir/build.make CMakeFiles/gpo_project.dir/src/GPO_aux.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/gpo_04_entrega_ejer3.dir/build.make CMakeFiles/gpo_04_entrega_ejer3.dir/src/GPO_aux.cpp.i
 .PHONY : src/GPO_aux.cpp.i
 
 src/GPO_aux.s: src/GPO_aux.cpp.s
@@ -293,8 +314,33 @@ src/GPO_aux.s: src/GPO_aux.cpp.s
 
 # target to generate assembly for a file
 src/GPO_aux.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/gpo_04_entrega_ejer2.dir/build.make CMakeFiles/gpo_04_entrega_ejer2.dir/src/GPO_aux.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/gpo_project.dir/build.make CMakeFiles/gpo_project.dir/src/GPO_aux.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/gpo_04_entrega_ejer3.dir/build.make CMakeFiles/gpo_04_entrega_ejer3.dir/src/GPO_aux.cpp.s
 .PHONY : src/GPO_aux.cpp.s
+
+src/GPO_project.o: src/GPO_project.cpp.o
+.PHONY : src/GPO_project.o
+
+# target to build an object file
+src/GPO_project.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/gpo_project.dir/build.make CMakeFiles/gpo_project.dir/src/GPO_project.cpp.o
+.PHONY : src/GPO_project.cpp.o
+
+src/GPO_project.i: src/GPO_project.cpp.i
+.PHONY : src/GPO_project.i
+
+# target to preprocess a source file
+src/GPO_project.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/gpo_project.dir/build.make CMakeFiles/gpo_project.dir/src/GPO_project.cpp.i
+.PHONY : src/GPO_project.cpp.i
+
+src/GPO_project.s: src/GPO_project.cpp.s
+.PHONY : src/GPO_project.s
+
+# target to generate assembly for a file
+src/GPO_project.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/gpo_project.dir/build.make CMakeFiles/gpo_project.dir/src/GPO_project.cpp.s
+.PHONY : src/GPO_project.cpp.s
 
 # Help Target
 help:
@@ -310,19 +356,23 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... uninstall"
 	@echo "... glfw"
-	@echo "... gpo_04_entrega_ejer2"
+	@echo "... gpo_04_entrega_ejer3"
+	@echo "... gpo_project"
 	@echo "... include/GpOObjectLoader.o"
 	@echo "... include/GpOObjectLoader.i"
 	@echo "... include/GpOObjectLoader.s"
 	@echo "... libs/glad/src/glad.o"
 	@echo "... libs/glad/src/glad.i"
 	@echo "... libs/glad/src/glad.s"
-	@echo "... src/GPO_04_entrega_ejer2.o"
-	@echo "... src/GPO_04_entrega_ejer2.i"
-	@echo "... src/GPO_04_entrega_ejer2.s"
+	@echo "... src/GPO_04_entrega_ejer3.o"
+	@echo "... src/GPO_04_entrega_ejer3.i"
+	@echo "... src/GPO_04_entrega_ejer3.s"
 	@echo "... src/GPO_aux.o"
 	@echo "... src/GPO_aux.i"
 	@echo "... src/GPO_aux.s"
+	@echo "... src/GPO_project.o"
+	@echo "... src/GPO_project.i"
+	@echo "... src/GPO_project.s"
 .PHONY : help
 
 

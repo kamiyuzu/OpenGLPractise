@@ -101,13 +101,13 @@ void main()
 
 GLFWwindow* window;
 GLuint prog[2];
-objeto modelo;
+obj modelo;
 
 
-// Dibuja objeto indexado
-void dibujar_indexado(objeto obj)
+// Dibuja obj indexado
+void dibujar_indexado(obj obj)
 {
-  glBindVertexArray(obj.VAO);              // Activamos VAO asociado al objeto
+  glBindVertexArray(obj.VAO);              // Activamos VAO asociado al obj
   glDrawArrays(GL_TRIANGLES, 0, obj.vertices.size());
   glBindVertexArray(0);
 }
@@ -122,7 +122,7 @@ vec3 up = vec3(0.0f, 1.0f, 0.0f);
 int prog_selected = 0;
 
 // Compilaci�n programas a ejecutar en la tarjeta gr�fica:  vertex shader, fragment shaders
-// Preparaci�n de los datos de los objetos a dibujar, envialarlos a la GPU
+// Preparaci�n de los datos de los objs a dibujar, envialarlos a la GPU
 // Opciones generales de render de OpenGL
 void init_scene()
 {
@@ -138,7 +138,7 @@ void init_scene()
 }
 
 
-// Actualizar escena: cambiar posici�n objetos, nuevos objetros, posici�n c�mara, luces, etc.
+// Actualizar escena: cambiar posici�n objs, nuevos objetros, posici�n c�mara, luces, etc.
 void render_scene()
 {
 	glClearColor(0.0f, 0.0f, 0.4f, 0.0f);

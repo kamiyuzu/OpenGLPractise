@@ -1,1 +1,1 @@
-"Link - Breath of the wild - Free download" (https://skfb.ly/oQFzP) by Tijmen Zwaneveld is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
+"Melinoe Weapon 3D fanart" (https://skfb.ly/oBOZu) by LP Cupcake is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
