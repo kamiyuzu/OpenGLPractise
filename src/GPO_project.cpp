@@ -14,7 +14,7 @@ const char* prac = "OpenGL(GpO) Iluminacion";   // Nombre de la practica (aparec
 ////////////     CODIGO SHADERS
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#define GLSL(src) "#version 330 core\n" #src
+#define GLSL(src) "#version 410 core\n" #src
 
 // const char* vertex_prog = leer_codigo_de_fichero("../data/prog.vs");
 // const char* fragment_prog = leer_codigo_de_fichero("../data/prog.fs");
