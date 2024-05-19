@@ -88,23 +88,24 @@ void main()
 
 GLFWwindow* window;
 GLuint prog[1];
-objeto modelo;
+obj modelo;
+GLuint tex0;
 
 
 // Dibuja objeto indexado
-void dibujar_indexado(objeto obj)
+void dibujar_indexado(obj obj)
 {
   glBindVertexArray(obj.VAO);              // Activamos VAO asociado al objeto
-  glDrawElements(GL_TRIANGLES,obj.Ni,obj.tipo_indice,(void*)0);  // Dibujar (indexado)
+  glDrawArrays(GL_TRIANGLES, 0, obj.vertices.size());
   glBindVertexArray(0);
 }
 
 
 // Variables globales
-mat4 Proy,View,M;
-vec3 campos=vec3(0.0f,0.0f,2.5f);
-vec3 target=vec3(0.0f,0.9f,0.0f);
-vec3 up = vec3(0, 1, 0);
+mat4 Proy,View,M,R,S;
+vec3 campos=vec3(0.0f,0.0f,2.0f);											
+vec3 target=vec3(0.0f,0.0f,0.0f);
+vec3 up = vec3(0.0f, 1.0f, 0.0f);
 vec4 ilu_coef[3] = {vec4(0.2, 0, 0, 10), vec4(0, 1, 0, 40), vec4(0, 0, 1, 60)};
 int prog_selected = 0;
 float az=0.0f, el=0.75;
@@ -118,7 +119,8 @@ void init_scene()
 	
 	glUseProgram(prog[prog_selected]);
 
-	modelo = cargar_modelo((char*) "bin/data/buda_n.bix");
+	modelo = cargar_obj((char*) "bin/data/melinoeweapons.obj");
+	tex0 = cargar_textura("bin/data/melinoe.jpg", GL_TEXTURE0);
 
 	Proy = glm::perspective(glm::radians(55.0f), 4.0f / 3.0f, 0.1f, 100.0f); 
 	View = glm::lookAt(campos,target,up);
@@ -139,7 +141,9 @@ void render_scene()
 
 	vec3 light_dir = vec3(cos(el)*cos(az), sin(el), cos(el)*sin(az));
 	vec3 x=vec3(0.0f, 0.0f, 0.0f);
-	M = translate(x)*rotate(1*tt, vec3(0.0f, 1.0f, 0.0f));   // Mov modelo 
+	S = scale(mat4(1.0f),vec3(2.0f));
+    R = rotate(90.0f, vec3(0.0f, 0.0f, 1.0f))*rotate(90.0f, vec3(1.0f, 0.0f, 0.0f))*rotate(120.0f, vec3(0.0f, 1.0f, 0.0f));
+	M = R * S;
 	
 	transfer_mat4("PV",Proy*View); transfer_mat4("M", M);
 	transfer_vec3("luz", light_dir);
