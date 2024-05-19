@@ -54,7 +54,8 @@ void main()
 	vec3 nn = normalize(n);
 	vec3 halfwayDir = normalize(luz + viewDir);
 
-	float spec = pow(max(dot(nn, halfwayDir), 0.0), 32.0f);
+	float spec = pow(max(dot(nn, halfwayDir), 0.0), 16.0f);
+	spec = smoothstep(0.005, 0.01, spec);
 	float difusa = dot(luz,nn); if (difusa < 0) difusa = 0; 
 	float ilu = (ilu_coef.x + ilu_coef.y*difusa + ilu_coef.z*spec);
 
@@ -103,12 +104,12 @@ void dibujar_indexado(obj obj)
 
 // Variables globales
 mat4 Proy,View,M,R,S;
-vec3 campos=vec3(0.0f,0.0f,2.0f);											
+vec3 campos=vec3(0.0f,0.0f,1.5f);											
 vec3 target=vec3(0.0f,0.0f,0.0f);
 vec3 up = vec3(0.0f, 1.0f, 0.0f);
 vec4 ilu_coef[3] = {vec4(0.2, 0, 0, 10), vec4(0, 1, 0, 40), vec4(0, 0, 1, 60)};
 int prog_selected = 0;
-float az=0.0f, el=0.75;
+float az=3.9f, el=6.3;
 
 // Compilaci�n programas a ejecutar en la tarjeta gr�fica:  vertex shader, fragment shaders
 // Preparaci�n de los datos de los objetos a dibujar, envialarlos a la GPU
@@ -140,9 +141,8 @@ void render_scene()
 	glUseProgram(prog[prog_selected]);
 
 	vec3 light_dir = vec3(cos(el)*cos(az), sin(el), cos(el)*sin(az));
-	vec3 x=vec3(0.0f, 0.0f, 0.0f);
 	S = scale(mat4(1.0f),vec3(2.0f));
-    R = rotate(90.0f, vec3(0.0f, 0.0f, 1.0f))*rotate(90.0f, vec3(1.0f, 0.0f, 0.0f))*rotate(120.0f, vec3(0.0f, 1.0f, 0.0f));
+    R = rotate(95.0f, vec3(0.0f, 0.0f, 1.0f))*rotate(90.0f, vec3(1.0f, 0.0f, 0.0f))*rotate(120.0f, vec3(0.0f, 1.0f, 0.0f));
 	M = R * S;
 	
 	transfer_mat4("PV",Proy*View); transfer_mat4("M", M);
@@ -220,8 +220,8 @@ static void KeyCallback(GLFWwindow* window, int key, int code, int action, int m
 				else prog_selected=1;
 			}
 			break;
-		case GLFW_KEY_UP: if(action && el<=M_PI/2) el+=0.02f; break;
-		case GLFW_KEY_DOWN: if(action && el>=-M_PI/2) el-=0.02f; break;
+		case GLFW_KEY_UP: if(action) el+=0.02f; break;
+		case GLFW_KEY_DOWN: if(action) el-=0.02f; break;
 		case GLFW_KEY_LEFT: if(action) az+=0.02f; break;
 		case GLFW_KEY_RIGHT: if(action) az-=0.02f; break;
 	}
