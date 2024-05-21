@@ -72,10 +72,10 @@ void main()
 		else
 			col = vec3(0.2,0.1,0.1);
 	} else {
-		float scale_origin = 0.5;
+		float scale_origin = 0.9;
 		float scale = scale_origin+edge_thresh;
 		float factor = (ilu+scale_origin)/scale;
-		col = factor*difusa*vec3(0.0,0.0,0.0);
+		col = factor*difusa*vec3(0.8,0.4,0.4);
 	}
 	col = col;
 }
@@ -109,7 +109,7 @@ vec3 target=vec3(0.0f,0.0f,0.0f);
 vec3 up = vec3(0.0f, 1.0f, 0.0f);
 vec4 ilu_coef[3] = {vec4(0.2, 0, 0, 10), vec4(0, 1, 0, 40), vec4(0, 0, 1, 60)};
 int prog_selected = 0;
-float az=3.9f, el=6.3;
+float az=7.2f, el=3.16;
 
 // Compilaci�n programas a ejecutar en la tarjeta gr�fica:  vertex shader, fragment shaders
 // Preparaci�n de los datos de los objetos a dibujar, envialarlos a la GPU
