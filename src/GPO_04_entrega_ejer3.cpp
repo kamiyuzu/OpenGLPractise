@@ -47,6 +47,9 @@ in vec3 n;
 in vec3 viewDir;
 uniform vec3 luz = vec3(1, 1, 0) / sqrt(2.0f);
 uniform vec4 ilu_coef;
+uniform float outter;
+uniform float mid;
+uniform float lower;
 out vec3 col;  // Color fragmento
 void main()
 {
@@ -63,11 +66,11 @@ void main()
 	float edge_detection = (ilu > edge_thresh) ? 0 : 1;
 
 	if(edge_detection == 0){
-		if (ilu > 0.75)
+		if (ilu > outter)
 			col = vec3(1.0,1.0,1.0);
-		else if (ilu > 0.5)
+		else if (ilu > mid)
 			col = vec3(0.6,0.3,0.3);
-		else if (ilu > 0.25)
+		else if (ilu > lower)
 			col = vec3(0.4,0.2,0.2);
 		else
 			col = vec3(0.2,0.1,0.1);
@@ -110,6 +113,7 @@ vec3 up = vec3(0.0f, 1.0f, 0.0f);
 vec4 ilu_coef[3] = {vec4(0.2, 0, 0, 10), vec4(0, 1, 0, 40), vec4(0, 0, 1, 60)};
 int prog_selected = 0;
 float az=7.2f, el=3.16;
+float outter = 0.75f, mid = 0.5f, lower = 0.25f;
 
 // Compilaci�n programas a ejecutar en la tarjeta gr�fica:  vertex shader, fragment shaders
 // Preparaci�n de los datos de los objetos a dibujar, envialarlos a la GPU
@@ -149,6 +153,9 @@ void render_scene()
 	transfer_vec3("luz", light_dir);
 	transfer_vec3("campos", campos);
 	transfer_vec4("ilu_coef", ilu_coef[1]);
+	transfer_float("outter", outter);
+	transfer_float("mid", mid);
+	transfer_float("lower", lower);
 	dibujar_indexado(modelo);
 }
 
@@ -224,6 +231,12 @@ static void KeyCallback(GLFWwindow* window, int key, int code, int action, int m
 		case GLFW_KEY_DOWN: if(action) el-=0.02f; break;
 		case GLFW_KEY_LEFT: if(action) az+=0.02f; break;
 		case GLFW_KEY_RIGHT: if(action) az-=0.02f; break;
+		case GLFW_KEY_1: if(action) outter-=0.01f; break;
+		case GLFW_KEY_2: if(action) outter+=0.01f; break;
+		case GLFW_KEY_3: if(action) mid-=0.01f; break;
+		case GLFW_KEY_4: if(action) mid+=0.01f; break;
+		case GLFW_KEY_5: if(action) lower-=0.01f; break;
+		case GLFW_KEY_6: if(action) lower+=0.01f; break;				
 	}
 }
 
