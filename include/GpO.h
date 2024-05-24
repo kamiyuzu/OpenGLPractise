@@ -37,6 +37,10 @@ using namespace glm;
 
 #include <vector>
 
+// Declaraciones de constantes
+#define VGA_NUM_PIX 8
+#define PATTERN_BITS 16
+
 // DEclaraciones  de tipos
 typedef struct {GLuint VAO; GLuint Ni; GLuint Nv; GLuint Nt; GLuint tipo_indice; } objeto;
 typedef struct {GLuint VAO; std::vector<vec3> vertices; } obj;

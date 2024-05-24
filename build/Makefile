@@ -162,17 +162,17 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named gpo_project
+# Target rules for targets named gpo_project_stippling
 
 # Build rule for target.
-gpo_project: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 gpo_project
-.PHONY : gpo_project
+gpo_project_stippling: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 gpo_project_stippling
+.PHONY : gpo_project_stippling
 
 # fast build rule for target.
-gpo_project/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/gpo_project.dir/build.make CMakeFiles/gpo_project.dir/build
-.PHONY : gpo_project/fast
+gpo_project_stippling/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/gpo_project_stippling.dir/build.make CMakeFiles/gpo_project_stippling.dir/build
+.PHONY : gpo_project_stippling/fast
 
 #=============================================================================
 # Target rules for targets named gpo_04_entrega_ejer3
@@ -218,7 +218,7 @@ include/GpOObjectLoader.o: include/GpOObjectLoader.cpp.o
 
 # target to build an object file
 include/GpOObjectLoader.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/gpo_project.dir/build.make CMakeFiles/gpo_project.dir/include/GpOObjectLoader.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/gpo_project_stippling.dir/build.make CMakeFiles/gpo_project_stippling.dir/include/GpOObjectLoader.cpp.o
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/gpo_04_entrega_ejer3.dir/build.make CMakeFiles/gpo_04_entrega_ejer3.dir/include/GpOObjectLoader.cpp.o
 .PHONY : include/GpOObjectLoader.cpp.o
 
@@ -227,7 +227,7 @@ include/GpOObjectLoader.i: include/GpOObjectLoader.cpp.i
 
 # target to preprocess a source file
 include/GpOObjectLoader.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/gpo_project.dir/build.make CMakeFiles/gpo_project.dir/include/GpOObjectLoader.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/gpo_project_stippling.dir/build.make CMakeFiles/gpo_project_stippling.dir/include/GpOObjectLoader.cpp.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/gpo_04_entrega_ejer3.dir/build.make CMakeFiles/gpo_04_entrega_ejer3.dir/include/GpOObjectLoader.cpp.i
 .PHONY : include/GpOObjectLoader.cpp.i
 
@@ -236,7 +236,7 @@ include/GpOObjectLoader.s: include/GpOObjectLoader.cpp.s
 
 # target to generate assembly for a file
 include/GpOObjectLoader.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/gpo_project.dir/build.make CMakeFiles/gpo_project.dir/include/GpOObjectLoader.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/gpo_project_stippling.dir/build.make CMakeFiles/gpo_project_stippling.dir/include/GpOObjectLoader.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/gpo_04_entrega_ejer3.dir/build.make CMakeFiles/gpo_04_entrega_ejer3.dir/include/GpOObjectLoader.cpp.s
 .PHONY : include/GpOObjectLoader.cpp.s
 
@@ -245,7 +245,7 @@ libs/glad/src/glad.o: libs/glad/src/glad.c.o
 
 # target to build an object file
 libs/glad/src/glad.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/gpo_project.dir/build.make CMakeFiles/gpo_project.dir/libs/glad/src/glad.c.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/gpo_project_stippling.dir/build.make CMakeFiles/gpo_project_stippling.dir/libs/glad/src/glad.c.o
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/gpo_04_entrega_ejer3.dir/build.make CMakeFiles/gpo_04_entrega_ejer3.dir/libs/glad/src/glad.c.o
 .PHONY : libs/glad/src/glad.c.o
 
@@ -254,7 +254,7 @@ libs/glad/src/glad.i: libs/glad/src/glad.c.i
 
 # target to preprocess a source file
 libs/glad/src/glad.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/gpo_project.dir/build.make CMakeFiles/gpo_project.dir/libs/glad/src/glad.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/gpo_project_stippling.dir/build.make CMakeFiles/gpo_project_stippling.dir/libs/glad/src/glad.c.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/gpo_04_entrega_ejer3.dir/build.make CMakeFiles/gpo_04_entrega_ejer3.dir/libs/glad/src/glad.c.i
 .PHONY : libs/glad/src/glad.c.i
 
@@ -263,7 +263,7 @@ libs/glad/src/glad.s: libs/glad/src/glad.c.s
 
 # target to generate assembly for a file
 libs/glad/src/glad.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/gpo_project.dir/build.make CMakeFiles/gpo_project.dir/libs/glad/src/glad.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/gpo_project_stippling.dir/build.make CMakeFiles/gpo_project_stippling.dir/libs/glad/src/glad.c.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/gpo_04_entrega_ejer3.dir/build.make CMakeFiles/gpo_04_entrega_ejer3.dir/libs/glad/src/glad.c.s
 .PHONY : libs/glad/src/glad.c.s
 
@@ -296,7 +296,7 @@ src/GPO_aux.o: src/GPO_aux.cpp.o
 
 # target to build an object file
 src/GPO_aux.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/gpo_project.dir/build.make CMakeFiles/gpo_project.dir/src/GPO_aux.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/gpo_project_stippling.dir/build.make CMakeFiles/gpo_project_stippling.dir/src/GPO_aux.cpp.o
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/gpo_04_entrega_ejer3.dir/build.make CMakeFiles/gpo_04_entrega_ejer3.dir/src/GPO_aux.cpp.o
 .PHONY : src/GPO_aux.cpp.o
 
@@ -305,7 +305,7 @@ src/GPO_aux.i: src/GPO_aux.cpp.i
 
 # target to preprocess a source file
 src/GPO_aux.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/gpo_project.dir/build.make CMakeFiles/gpo_project.dir/src/GPO_aux.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/gpo_project_stippling.dir/build.make CMakeFiles/gpo_project_stippling.dir/src/GPO_aux.cpp.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/gpo_04_entrega_ejer3.dir/build.make CMakeFiles/gpo_04_entrega_ejer3.dir/src/GPO_aux.cpp.i
 .PHONY : src/GPO_aux.cpp.i
 
@@ -314,33 +314,33 @@ src/GPO_aux.s: src/GPO_aux.cpp.s
 
 # target to generate assembly for a file
 src/GPO_aux.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/gpo_project.dir/build.make CMakeFiles/gpo_project.dir/src/GPO_aux.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/gpo_project_stippling.dir/build.make CMakeFiles/gpo_project_stippling.dir/src/GPO_aux.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/gpo_04_entrega_ejer3.dir/build.make CMakeFiles/gpo_04_entrega_ejer3.dir/src/GPO_aux.cpp.s
 .PHONY : src/GPO_aux.cpp.s
 
-src/GPO_project.o: src/GPO_project.cpp.o
-.PHONY : src/GPO_project.o
+src/GPO_project_stippling.o: src/GPO_project_stippling.cpp.o
+.PHONY : src/GPO_project_stippling.o
 
 # target to build an object file
-src/GPO_project.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/gpo_project.dir/build.make CMakeFiles/gpo_project.dir/src/GPO_project.cpp.o
-.PHONY : src/GPO_project.cpp.o
+src/GPO_project_stippling.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/gpo_project_stippling.dir/build.make CMakeFiles/gpo_project_stippling.dir/src/GPO_project_stippling.cpp.o
+.PHONY : src/GPO_project_stippling.cpp.o
 
-src/GPO_project.i: src/GPO_project.cpp.i
-.PHONY : src/GPO_project.i
+src/GPO_project_stippling.i: src/GPO_project_stippling.cpp.i
+.PHONY : src/GPO_project_stippling.i
 
 # target to preprocess a source file
-src/GPO_project.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/gpo_project.dir/build.make CMakeFiles/gpo_project.dir/src/GPO_project.cpp.i
-.PHONY : src/GPO_project.cpp.i
+src/GPO_project_stippling.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/gpo_project_stippling.dir/build.make CMakeFiles/gpo_project_stippling.dir/src/GPO_project_stippling.cpp.i
+.PHONY : src/GPO_project_stippling.cpp.i
 
-src/GPO_project.s: src/GPO_project.cpp.s
-.PHONY : src/GPO_project.s
+src/GPO_project_stippling.s: src/GPO_project_stippling.cpp.s
+.PHONY : src/GPO_project_stippling.s
 
 # target to generate assembly for a file
-src/GPO_project.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/gpo_project.dir/build.make CMakeFiles/gpo_project.dir/src/GPO_project.cpp.s
-.PHONY : src/GPO_project.cpp.s
+src/GPO_project_stippling.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/gpo_project_stippling.dir/build.make CMakeFiles/gpo_project_stippling.dir/src/GPO_project_stippling.cpp.s
+.PHONY : src/GPO_project_stippling.cpp.s
 
 # Help Target
 help:
@@ -357,7 +357,7 @@ help:
 	@echo "... uninstall"
 	@echo "... glfw"
 	@echo "... gpo_04_entrega_ejer3"
-	@echo "... gpo_project"
+	@echo "... gpo_project_stippling"
 	@echo "... include/GpOObjectLoader.o"
 	@echo "... include/GpOObjectLoader.i"
 	@echo "... include/GpOObjectLoader.s"
@@ -370,9 +370,9 @@ help:
 	@echo "... src/GPO_aux.o"
 	@echo "... src/GPO_aux.i"
 	@echo "... src/GPO_aux.s"
-	@echo "... src/GPO_project.o"
-	@echo "... src/GPO_project.i"
-	@echo "... src/GPO_project.s"
+	@echo "... src/GPO_project_stippling.o"
+	@echo "... src/GPO_project_stippling.i"
+	@echo "... src/GPO_project_stippling.s"
 .PHONY : help
 
 
