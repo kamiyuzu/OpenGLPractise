@@ -41,7 +41,7 @@ void dibujar_indexado(obj obj)
 
 
 // Variables globales
-float az=0.0f, el=0.75f, d = 2.0f, zfar = 25.0f, znear = 0.2f;
+float az=0.0f, el=0.75f, d = 1.3f, zfar = 25.0f, znear = 0.2f;
 mat4 Proy,View,M, R, T, S;
 vec3 campos=vec3(0.0f,0.0f,d);											
 vec3 target=vec3(0.0f,0.0f,0.0f);
@@ -85,12 +85,9 @@ void render_scene()
 	View = lookAt(campos,target,up);
 
 	vec3 light_dir = vec3(cos(el)*cos(az), sin(el), cos(el)*sin(az));
-	vec3 xy=vec3(cos(tt), 1.0f, sin(tt));
 	S = scale(mat4(1.0f),vec3(2.0f));
     R = rotate(90.0f, vec3(0.0f, 0.0f, 1.0f))*rotate(30.0f, vec3(1.0f, 0.0f, 0.0f))*rotate(120.0f, vec3(0.0f, 1.0f, 0.0f));
-    // T = translate(glm::vec3(2.5*cos(t), 2.5*sin(t), 0));   	
 	M = R * S;
-	// M = rotate(90.0f, vec3(0.0f, 0.0f, 1.0f))*rotate(90.0f, vec3(0.0f, 1.0f, 0.0f));   // Mov modelo 
 	
 	transfer_mat4("MVP", Proy*View*M);
 	transfer_mat4("View", View);

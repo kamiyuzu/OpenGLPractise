@@ -10,7 +10,6 @@ flat out vec3 startPos;
 uniform mat4 MVP;
 uniform mat4 View;
 void main(){
-	POS = pos;
 	vec4 pos = MVP*vec4(pos.x, pos.y, pos.z, 1.0);
 	gl_Position = pos;
 
@@ -20,7 +19,7 @@ void main(){
 	temp = transpose(inverse(View))*vec4(normal, 1.0f);
 	NORMAL = vec3(temp.x, temp.y, temp.z);
 
-    vertPos = pos.xyz / pos.w;
+    vertPos = temp.xyz / temp.w;
     startPos = vertPos;
    
 	UV=uv;
