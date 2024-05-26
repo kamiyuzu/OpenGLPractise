@@ -66,7 +66,7 @@ void init_scene()
 	transfer_vec3("color", vec3(0.314,0.784,0.471));
 	transfer_vec3("color_luz", vec3(1,1,1));
 
-	glEnable(GL_CULL_FACE | GL_DEPTH_TEST);
+	glEnable(GL_CULL_FACE); glEnable(GL_DEPTH_TEST);
 }
 
 
