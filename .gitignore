@@ -1,7 +1,6 @@
 build/*
 !build/libs
 !build/cmake_install.cmake
-!build/CMakeCache.txt
 !build/Makefile
 .DS_Store
 .vscode/

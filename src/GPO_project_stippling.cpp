@@ -60,7 +60,7 @@ void init_scene()
 	
 	glUseProgram(prog[prog_selected]);
 
-	modelo = cargar_obj((char*) "bin/data/melinoeweapons.obj");
+	modelo = cargar_obj((char*) "bin/data/melinoe_weapons.obj");
 	GLuint tex0 = cargar_textura("bin/data/melinoe.jpg", GL_TEXTURE0);
 
 	transfer_vec3("color", vec3(0.314,0.784,0.471));

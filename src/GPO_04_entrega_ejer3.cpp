@@ -124,7 +124,7 @@ void init_scene()
 	
 	glUseProgram(prog[prog_selected]);
 
-	modelo = cargar_obj((char*) "bin/data/melinoeweapons.obj");
+	modelo = cargar_obj((char*) "bin/data/melinoe_weapons.obj");
 	tex0 = cargar_textura("bin/data/melinoe.jpg", GL_TEXTURE0);
 
 	glEnable(GL_CULL_FACE); glEnable(GL_DEPTH_TEST);
