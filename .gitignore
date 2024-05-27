@@ -1,6 +1,4 @@
 build/*
-!build/cmake_install.cmake
-!build/Makefile
 .DS_Store
 .vscode/
 data/*
