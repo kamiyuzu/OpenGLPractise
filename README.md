@@ -1,5 +1,18 @@
 # OpenGLPractise
 OpenGL practise for university subject
+## How to compile the proyect
+First to compile the project just cd into the build folder an execute the following command:
+
+```sh
+cmake .. -DOpenGL_GL_PREFERENCE=GLVND && make -j4
+```
+
+Afterwards just run the OpenGL generated binary you want to visualise:
+
+```sh
+./bin/gpo_04_entrega_ejer3
+```
+
 ## Cel-shading
 GIF illustrating the cel-shading implemented:
 ![Cel-shading](recordings/cel-shading.gif)
