@@ -188,6 +188,19 @@ gpo_04_entrega_ejer3/fast:
 .PHONY : gpo_04_entrega_ejer3/fast
 
 #=============================================================================
+# Target rules for targets named GPO_project_ink_technique_NPR
+
+# Build rule for target.
+GPO_project_ink_technique_NPR: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 GPO_project_ink_technique_NPR
+.PHONY : GPO_project_ink_technique_NPR
+
+# fast build rule for target.
+GPO_project_ink_technique_NPR/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/GPO_project_ink_technique_NPR.dir/build.make CMakeFiles/GPO_project_ink_technique_NPR.dir/build
+.PHONY : GPO_project_ink_technique_NPR/fast
+
+#=============================================================================
 # Target rules for targets named uninstall
 
 # Build rule for target.
@@ -220,6 +233,7 @@ include/GpOObjectLoader.o: include/GpOObjectLoader.cpp.o
 include/GpOObjectLoader.cpp.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/gpo_project_stippling.dir/build.make CMakeFiles/gpo_project_stippling.dir/include/GpOObjectLoader.cpp.o
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/gpo_04_entrega_ejer3.dir/build.make CMakeFiles/gpo_04_entrega_ejer3.dir/include/GpOObjectLoader.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/GPO_project_ink_technique_NPR.dir/build.make CMakeFiles/GPO_project_ink_technique_NPR.dir/include/GpOObjectLoader.cpp.o
 .PHONY : include/GpOObjectLoader.cpp.o
 
 include/GpOObjectLoader.i: include/GpOObjectLoader.cpp.i
@@ -229,6 +243,7 @@ include/GpOObjectLoader.i: include/GpOObjectLoader.cpp.i
 include/GpOObjectLoader.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/gpo_project_stippling.dir/build.make CMakeFiles/gpo_project_stippling.dir/include/GpOObjectLoader.cpp.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/gpo_04_entrega_ejer3.dir/build.make CMakeFiles/gpo_04_entrega_ejer3.dir/include/GpOObjectLoader.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/GPO_project_ink_technique_NPR.dir/build.make CMakeFiles/GPO_project_ink_technique_NPR.dir/include/GpOObjectLoader.cpp.i
 .PHONY : include/GpOObjectLoader.cpp.i
 
 include/GpOObjectLoader.s: include/GpOObjectLoader.cpp.s
@@ -238,6 +253,7 @@ include/GpOObjectLoader.s: include/GpOObjectLoader.cpp.s
 include/GpOObjectLoader.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/gpo_project_stippling.dir/build.make CMakeFiles/gpo_project_stippling.dir/include/GpOObjectLoader.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/gpo_04_entrega_ejer3.dir/build.make CMakeFiles/gpo_04_entrega_ejer3.dir/include/GpOObjectLoader.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/GPO_project_ink_technique_NPR.dir/build.make CMakeFiles/GPO_project_ink_technique_NPR.dir/include/GpOObjectLoader.cpp.s
 .PHONY : include/GpOObjectLoader.cpp.s
 
 libs/glad/src/glad.o: libs/glad/src/glad.c.o
@@ -247,6 +263,7 @@ libs/glad/src/glad.o: libs/glad/src/glad.c.o
 libs/glad/src/glad.c.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/gpo_project_stippling.dir/build.make CMakeFiles/gpo_project_stippling.dir/libs/glad/src/glad.c.o
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/gpo_04_entrega_ejer3.dir/build.make CMakeFiles/gpo_04_entrega_ejer3.dir/libs/glad/src/glad.c.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/GPO_project_ink_technique_NPR.dir/build.make CMakeFiles/GPO_project_ink_technique_NPR.dir/libs/glad/src/glad.c.o
 .PHONY : libs/glad/src/glad.c.o
 
 libs/glad/src/glad.i: libs/glad/src/glad.c.i
@@ -256,6 +273,7 @@ libs/glad/src/glad.i: libs/glad/src/glad.c.i
 libs/glad/src/glad.c.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/gpo_project_stippling.dir/build.make CMakeFiles/gpo_project_stippling.dir/libs/glad/src/glad.c.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/gpo_04_entrega_ejer3.dir/build.make CMakeFiles/gpo_04_entrega_ejer3.dir/libs/glad/src/glad.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/GPO_project_ink_technique_NPR.dir/build.make CMakeFiles/GPO_project_ink_technique_NPR.dir/libs/glad/src/glad.c.i
 .PHONY : libs/glad/src/glad.c.i
 
 libs/glad/src/glad.s: libs/glad/src/glad.c.s
@@ -265,6 +283,7 @@ libs/glad/src/glad.s: libs/glad/src/glad.c.s
 libs/glad/src/glad.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/gpo_project_stippling.dir/build.make CMakeFiles/gpo_project_stippling.dir/libs/glad/src/glad.c.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/gpo_04_entrega_ejer3.dir/build.make CMakeFiles/gpo_04_entrega_ejer3.dir/libs/glad/src/glad.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/GPO_project_ink_technique_NPR.dir/build.make CMakeFiles/GPO_project_ink_technique_NPR.dir/libs/glad/src/glad.c.s
 .PHONY : libs/glad/src/glad.c.s
 
 src/GPO_04_entrega_ejer3.o: src/GPO_04_entrega_ejer3.cpp.o
@@ -298,6 +317,7 @@ src/GPO_aux.o: src/GPO_aux.cpp.o
 src/GPO_aux.cpp.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/gpo_project_stippling.dir/build.make CMakeFiles/gpo_project_stippling.dir/src/GPO_aux.cpp.o
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/gpo_04_entrega_ejer3.dir/build.make CMakeFiles/gpo_04_entrega_ejer3.dir/src/GPO_aux.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/GPO_project_ink_technique_NPR.dir/build.make CMakeFiles/GPO_project_ink_technique_NPR.dir/src/GPO_aux.cpp.o
 .PHONY : src/GPO_aux.cpp.o
 
 src/GPO_aux.i: src/GPO_aux.cpp.i
@@ -307,6 +327,7 @@ src/GPO_aux.i: src/GPO_aux.cpp.i
 src/GPO_aux.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/gpo_project_stippling.dir/build.make CMakeFiles/gpo_project_stippling.dir/src/GPO_aux.cpp.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/gpo_04_entrega_ejer3.dir/build.make CMakeFiles/gpo_04_entrega_ejer3.dir/src/GPO_aux.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/GPO_project_ink_technique_NPR.dir/build.make CMakeFiles/GPO_project_ink_technique_NPR.dir/src/GPO_aux.cpp.i
 .PHONY : src/GPO_aux.cpp.i
 
 src/GPO_aux.s: src/GPO_aux.cpp.s
@@ -316,7 +337,32 @@ src/GPO_aux.s: src/GPO_aux.cpp.s
 src/GPO_aux.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/gpo_project_stippling.dir/build.make CMakeFiles/gpo_project_stippling.dir/src/GPO_aux.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/gpo_04_entrega_ejer3.dir/build.make CMakeFiles/gpo_04_entrega_ejer3.dir/src/GPO_aux.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/GPO_project_ink_technique_NPR.dir/build.make CMakeFiles/GPO_project_ink_technique_NPR.dir/src/GPO_aux.cpp.s
 .PHONY : src/GPO_aux.cpp.s
+
+src/GPO_project_ink_technique_NPR.o: src/GPO_project_ink_technique_NPR.cpp.o
+.PHONY : src/GPO_project_ink_technique_NPR.o
+
+# target to build an object file
+src/GPO_project_ink_technique_NPR.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/GPO_project_ink_technique_NPR.dir/build.make CMakeFiles/GPO_project_ink_technique_NPR.dir/src/GPO_project_ink_technique_NPR.cpp.o
+.PHONY : src/GPO_project_ink_technique_NPR.cpp.o
+
+src/GPO_project_ink_technique_NPR.i: src/GPO_project_ink_technique_NPR.cpp.i
+.PHONY : src/GPO_project_ink_technique_NPR.i
+
+# target to preprocess a source file
+src/GPO_project_ink_technique_NPR.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/GPO_project_ink_technique_NPR.dir/build.make CMakeFiles/GPO_project_ink_technique_NPR.dir/src/GPO_project_ink_technique_NPR.cpp.i
+.PHONY : src/GPO_project_ink_technique_NPR.cpp.i
+
+src/GPO_project_ink_technique_NPR.s: src/GPO_project_ink_technique_NPR.cpp.s
+.PHONY : src/GPO_project_ink_technique_NPR.s
+
+# target to generate assembly for a file
+src/GPO_project_ink_technique_NPR.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/GPO_project_ink_technique_NPR.dir/build.make CMakeFiles/GPO_project_ink_technique_NPR.dir/src/GPO_project_ink_technique_NPR.cpp.s
+.PHONY : src/GPO_project_ink_technique_NPR.cpp.s
 
 src/GPO_project_stippling.o: src/GPO_project_stippling.cpp.o
 .PHONY : src/GPO_project_stippling.o
@@ -355,6 +401,7 @@ help:
 	@echo "... list_install_components"
 	@echo "... rebuild_cache"
 	@echo "... uninstall"
+	@echo "... GPO_project_ink_technique_NPR"
 	@echo "... glfw"
 	@echo "... gpo_04_entrega_ejer3"
 	@echo "... gpo_project_stippling"
@@ -370,6 +417,9 @@ help:
 	@echo "... src/GPO_aux.o"
 	@echo "... src/GPO_aux.i"
 	@echo "... src/GPO_aux.s"
+	@echo "... src/GPO_project_ink_technique_NPR.o"
+	@echo "... src/GPO_project_ink_technique_NPR.i"
+	@echo "... src/GPO_project_ink_technique_NPR.s"
 	@echo "... src/GPO_project_stippling.o"
 	@echo "... src/GPO_project_stippling.i"
 	@echo "... src/GPO_project_stippling.s"
