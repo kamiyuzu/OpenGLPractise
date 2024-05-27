@@ -11,3 +11,6 @@ GIF illustrating the stippling implemented changing the pattern:
 ## Ink texture NPR
 GIF illustrating the ink texture implemented changing the factor:
 ![INK_Texture](recordings/Ink_Texture.gif)
+## Ink Wash
+GIF illustrating the ink texture implemented changing the factor:
+![INK_Texture](recordings/inkwash.gif)
