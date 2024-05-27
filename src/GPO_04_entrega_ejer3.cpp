@@ -6,7 +6,7 @@ ATG, 2020
 
 // TAMA�O y TITULO INICIAL de la VENTANA
 int ANCHO = 800, ALTO = 600;  // Tama�o inicial ventana
-const char* prac = "OpenGL(GpO) Iluminacion";   // Nombre de la practica (aparecera en el titulo de la ventana).
+const char* prac = "OpenGL(GpO) Iluminacion Cel-Shading";   // Nombre de la practica (aparecera en el titulo de la ventana).
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -20,7 +20,7 @@ const char* prac = "OpenGL(GpO) Iluminacion";   // Nombre de la practica (aparec
 //  PROGRAMA 2 (aqui implementaremos version en fragmentos)
 const char* vertex_prog2 = GLSL(
 layout(location = 0) in vec3 pos;
-layout(location = 1) in vec3 normal;
+layout(location = 2) in vec3 normal;
 out vec3 n;
 out vec3 v;
 out vec3 viewDir;
@@ -45,7 +45,7 @@ const char* fragment_prog2 = GLSL(
 in vec3 v;
 in vec3 n;
 in vec3 viewDir;
-uniform vec3 luz = vec3(1, 1, 0) / sqrt(2.0f);
+uniform vec3 luz;
 uniform vec4 ilu_coef;
 uniform float outter;
 uniform float mid;
@@ -144,7 +144,7 @@ void render_scene()
 	campos = d * vec3(sin(az)*cos(el), cos(az)*cos(el), sin(el));
 	vec3 light_dir = vec3(cos(el)*cos(az), sin(el), cos(el)*sin(az));
 	S = scale(mat4(1.0f),vec3(2.0f));
-    R = rotate(95.0f, vec3(0.0f, 0.0f, 1.0f))*rotate(90.0f, vec3(1.0f, 0.0f, 0.0f))*rotate(120.0f, vec3(0.0f, 1.0f, 0.0f));
+    R = rotate(90.0f, vec3(0.0f, 0.0f, 1.0f))*rotate(90.0f, vec3(1.0f, 0.0f, 0.0f))*rotate(120.0f, vec3(0.0f, 1.0f, 0.0f));
 	M = R * S;
 
 	Proy = perspective(radians(55.0f), 4.0f / 3.0f, znear, zfar); 

@@ -83,7 +83,7 @@ void render_scene()
 
 	vec3 light_dir = vec3(cos(el)*cos(az), sin(el), cos(el)*sin(az));
 	S = scale(mat4(1.0f),vec3(2.0f));
-    R = rotate(90.0f, vec3(0.0f, 0.0f, 1.0f))*rotate(30.0f, vec3(1.0f, 0.0f, 0.0f))*rotate(120.0f, vec3(0.0f, 1.0f, 0.0f));
+    R = rotate(90.0f, vec3(0.0f, 0.0f, 1.0f))*rotate(90.0f, vec3(1.0f, 0.0f, 0.0f))*rotate(120.0f, vec3(0.0f, 1.0f, 0.0f));
 	M = R * S;
 	
 	transfer_mat4("MVP", Proy*View*M);
