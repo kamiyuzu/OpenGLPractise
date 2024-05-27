@@ -40,7 +40,7 @@ void main(void) {
 	float edge_detection = (visiblity > edge_thresh) ? 0 : 1;
 	
 	vec3 final_color;
-	vec2 dir  = (vertPos.xy-startPos.xy) * vec2(ALTO,ANCHO)/2.0;
+	vec2 dir = (vertPos.xy-startPos.xy) * vec2(ANCHO,ALTO)/2.0;
 	float dist = length(dir);
 	uint bit = uint(round(dist / factor)) & 15U;
 
