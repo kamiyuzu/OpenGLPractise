@@ -50,10 +50,21 @@ set(GPO_SOURCE_FILES include/stb/stb_image.h
 add_executable(gpo_04_entrega_ejer3 ${GPO_SOURCE_FILES})
 target_link_libraries(gpo_04_entrega_ejer3 PRIVATE ${OPENGL_LIBRARIES} glfw glm glad_interface)
 
+set(GPO_SOURCE_FILES include/stb/stb_image.h
+					 include/GpO.h
+					 include/GpOObjectLoader.hpp
+					 include/GpOObjectLoader.cpp
+					 src/GPO_project_ink_technique_NPR.cpp
+					 src/GPO_aux.cpp)
+add_executable(GPO_project_ink_technique_NPR ${GPO_SOURCE_FILES})
+target_link_libraries(GPO_project_ink_technique_NPR PRIVATE ${OPENGL_LIBRARIES} glfw glm glad_interface)
+
 set_target_properties(gpo_project_stippling
   PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin")
 set_target_properties(gpo_04_entrega_ejer3
-  PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin")  
+  PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin") 
+set_target_properties(GPO_project_ink_technique_NPR
+  PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin")
 
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 file(COPY data DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/bin)
