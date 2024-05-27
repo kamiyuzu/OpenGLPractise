@@ -15,10 +15,8 @@ static const int MAX_PATTERN = pow(2, PATTERN_BITS);
 ////////////     CODIGO SHADERS
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-const char* vertex_prog_stippling1 = leer_codigo_de_fichero("bin/data/stippling1.vs");
-const char* fragment_prog_stippling1 = leer_codigo_de_fichero("bin/data/stippling1.fs");
-const char* vertex_prog_stippling2 = leer_codigo_de_fichero("bin/data/stippling2.vs");
-const char* fragment_prog_stippling2 = leer_codigo_de_fichero("bin/data/stippling2.fs");
+const char* vertex_prog_stippling = leer_codigo_de_fichero("bin/data/stippling.vs");
+const char* fragment_prog_stippling = leer_codigo_de_fichero("bin/data/stippling.fs");
 
 ////////////////////////////////  FIN PROGRAMAS GPU (SHADERS) //////////////////////////////////
 
@@ -27,7 +25,7 @@ const char* fragment_prog_stippling2 = leer_codigo_de_fichero("bin/data/stipplin
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 GLFWwindow* window;
-GLuint prog[2];
+GLuint prog[1];
 obj modelo;
 
 
@@ -47,23 +45,22 @@ vec3 campos=vec3(0.0f,0.0f,d);
 vec3 target=vec3(0.0f,0.0f,0.0f);
 vec3 up = vec3(0.0f, 1.0f, 0.0f);
 int prog_selected = 0;
-int pattern = 0x0101;
-float factor = 2.0f;
+int pattern = 0xAAAA;
+float factor = 1.0f;
 
 // Compilaci�n programas a ejecutar en la tarjeta gr�fica:  vertex shader, fragment shaders
 // Preparaci�n de los datos de los objs a dibujar, envialarlos a la GPU
 // Opciones generales de render de OpenGL
 void init_scene()
 {
-	prog[0] = Compile_Link_Shaders(vertex_prog_stippling1, fragment_prog_stippling1); // Compile shaders prog_stippling1
-	prog[1] = Compile_Link_Shaders(vertex_prog_stippling2, fragment_prog_stippling2); // Compile shaders prog_stippling2
+	prog[0] = Compile_Link_Shaders(vertex_prog_stippling, fragment_prog_stippling); // Compile shaders prog_stippling1
 	
 	glUseProgram(prog[prog_selected]);
 
 	modelo = cargar_obj((char*) "bin/data/melinoe_weapons.obj");
 	GLuint tex0 = cargar_textura("bin/data/melinoe.jpg", GL_TEXTURE0);
 
-	transfer_vec3("color", vec3(0.314,0.784,0.471));
+	// transfer_vec3("color", vec3(0.314,0.784,0.471));
 	transfer_vec3("color_luz", vec3(1,1,1));
 
 	glEnable(GL_CULL_FACE); glEnable(GL_DEPTH_TEST);
@@ -163,20 +160,14 @@ static void KeyCallback(GLFWwindow* window, int key, int code, int action, int m
 	switch (key)
 	{
 		case GLFW_KEY_ESCAPE: glfwSetWindowShouldClose(window, true); break;
-		case GLFW_KEY_TAB:
-			if(action) {
-				if(prog_selected) prog_selected=0;
-				else prog_selected=1;
-			}
-			break;
 		case GLFW_KEY_UP: if(action) el+=0.02f; break;
 		case GLFW_KEY_DOWN: if(action) el-=0.02f; break;
 		case GLFW_KEY_LEFT: if(action) az+=0.02f; break;
 		case GLFW_KEY_RIGHT: if(action) az-=0.02f; break;
 		case GLFW_KEY_1: if(action  && factor > 1) factor-=1.0f; break;
 		case GLFW_KEY_2: if(action && factor < MAX_BPP) factor+=1.0f; break;
-		case GLFW_KEY_3: if(action && pattern > 1) pattern = pattern >> 1; break;
-		case GLFW_KEY_4: if(action && pattern < MAX_PATTERN) pattern = pattern << 1; break;
+		case GLFW_KEY_3: if(action && pattern > 1) pattern -= 1; break;
+		case GLFW_KEY_4: if(action && pattern < MAX_PATTERN) pattern += 1; break;
 	}
     fprintf(stdout,"factor %f pattern %d\n", factor, pattern);
 }

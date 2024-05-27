@@ -8,5 +8,5 @@ data/*
 !data/melinoe_weapons.obj
 !data/credits_melinoe.md
 !data/melinoe.jpg
-!data/stippling*.fs
-!data/stippling*.vs
+!data/stippling.fs
+!data/stippling.vs

@@ -34,7 +34,7 @@ void main(void) {
 	float spec = pow(max(dot(viewDir, reflectDir), 0.0), 16);
 	vec3 specular = spec*color_luz;
 	
-	float edge_thresh = 0.1;
+	float edge_thresh = 0.2;
 	float visiblity = dot(viewDir, norm);
 
 	float edge_detection = (visiblity > edge_thresh) ? 0 : 1;
@@ -46,16 +46,21 @@ void main(void) {
 
 	vec3 tex_final = texture(unit, UV).rgb;
 	if(edge_detection == 0) {
-		if ((uint(pattern) & (1U<<bit)) == 0U) {
-			final_color = (ambient+diffuse+specular)*tex_final;
-		} else {
-			final_color = (ambient+diffuse+specular)*color;
-		}
+		// if ((uint(pattern) & (1U<<bit)) == 0U) {
+		// 	final_color = (ambient+diffuse+specular)*tex_final;
+		// } else {
+		// 	final_color = (ambient+diffuse+specular)*color;
+		// }
+		final_color = (ambient+diffuse+specular)*tex_final;
 	} else {
-		float scale_origin = 0.5;
+		float scale_origin = 0.8;
 		float scale = scale_origin+edge_thresh;
 		float scale_factor = (visiblity+scale_origin)/scale;
-		final_color = scale_factor*ambient*color;
+		if ((uint(pattern) & (1U<<bit)) == 0U) {
+			final_color = tex_final;
+		} else {
+			final_color = scale_factor*ambient*vec3(0,0,0);
+		}
 	}
 	col = vec4(final_color, 1.0f);
 }
