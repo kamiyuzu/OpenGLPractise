@@ -1,5 +1,6 @@
 # OpenGLPractise
-OpenGL practise for university subject
+OpenGL practise for an university subject
+
 ## How to compile the proyect
 First to compile the project just cd into the build folder an execute the following command:
 
